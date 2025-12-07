@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Dark Store</title>
+<style>
+body {
+  background: #0d0d0d;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.tabs {
+  background: #111;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid #222;
+}
+.tablinks {
+  background: #222;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.tablinks.active {
+  background: #6a0dad;
+}
+.tabcontent {
+  display: none;
+  padding: 20px;
+}
+button {
+  background: #6a0dad;
+  border: none;
+  padding: 10px 15px;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 5px 0;
+}
+.script-box {
+  background: #1a1a1a;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
+.script-box h3 {
+  margin-top: 0;
+  color: #a566ff;
+}
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
+  <button class="tablinks" onclick="openTab(event, 'Jogos')">Jogos</button>
+  <button class="tablinks" onclick="openTab(event, 'Scripts')">Scripts</button>
+</div>
+
+<div id="Home" class="tabcontent">
+  <h2>Home</h2>
+  <p>Bem-vindo ao Dark Store!</p>
+  <button onclick="window.open('https://discord.gg/CAD8ZMUB4G','_blank')">Compre Aqui</button>
+  <br>
+  <button onclick="window.open('https://www.youtube.com/@Boonie0','_blank')">YouTube</button>
+  <br>
+  <button onclick="window.open('https://www.tiktok.com/@gugu648urg?lang=pt-BR','_blank')">TikTok</button>
+</div>
+
+<div id="Jogos" class="tabcontent">
+  <h2>Jogos</h2>
+  <button onclick="window.open('https://www.roblox.com/games/109983668079237/Steal-a-Brainrot','_blank')">Jogar o jogo</button>
+</div>
+
+<div id="Scripts" class="tabcontent">
+  <h2>Scripts</h2>
+
+  <div class="script-box">
+    <h3>ZZZZ HUB</h3>
+    <p>loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/3070ced1582894ed"))()</p>
+  </div>
+
+  <div class="script-box">
+    <h3>LAG SEM AURA</h3>
+    <p>loadstring(game:HttpGet("https://files.zvyz.live/scripts/Cracked/TSKSkids/SVD8_Crack.luau"))()</p>
+  </div>
+
+  <div class="script-box">
+    <h3>ZL PvP Hub</h3>
+    <p>loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/main/ZLPVPreview.lua"))()</p>
+  </div>
+
+  <div class="script-box">
+    <h3>XRapid Loader</h3>
+    <p>loadstring(game:HttpGet("https://raw.githubusercontent.com/xrapidv2/StealaBrainrot/refs/heads/main/desyncworks"))()</p>
+  </div>
+
+  <div class="script-box">
+    <h3>Miranda</h3>
+    <p>loadstring(game:HttpGet("https://pastefy.app/QBWl1BKN/raw",true))()</p>
+  </div>
+</div>
+
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+document.getElementsByClassName("tablinks")[0].click();
+</script>
+
+</body>
+</html>
