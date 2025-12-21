@@ -2,128 +2,368 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Dark Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Studio Site</title>
 <style>
-body {
-  background: #0d0d0d;
-  color: white;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+:root{
+  --red:#c40000;
+  --red-light:#ff2b2b;
+  --bg:#0b0b0b;
+  --card:#151515;
 }
-.tabs {
-  background: #111;
-  padding: 10px;
-  display: flex;
-  gap: 10px;
-  border-bottom: 2px solid #222;
+
+/* RESET */
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+
+/* BACKGROUND */
+body{
+  background:var(--bg);
+  color:white;
+  overflow-x:hidden;
+  position:relative;
 }
-.tablinks {
-  background: #222;
-  border: none;
-  padding: 10px 15px;
-  color: white;
-  cursor: pointer;
-  border-radius: 6px;
+
+/* 🎄 Luzes de Natal coloridas */
+.lights{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  padding:10px;
 }
-.tablinks.active {
-  background: #6a0dad;
+.lights div{
+  width:15px;
+  height:15px;
+  border-radius:50%;
+  animation:blink 1.5s infinite;
 }
-.tabcontent {
-  display: none;
-  padding: 20px;
+.lights div:nth-child(1){animation-delay:0s;background:red;}
+.lights div:nth-child(2){animation-delay:.3s;background:green;}
+.lights div:nth-child(3){animation-delay:.6s;background:yellow;}
+.lights div:nth-child(4){animation-delay:.9s;background:blue;}
+.lights div:nth-child(5){animation-delay:1.2s;background:orange;}
+@keyframes blink{
+  0%,50%,100%{opacity:1;}
+  25%,75%{opacity:0.2;}
 }
-button {
-  background: #6a0dad;
-  border: none;
-  padding: 10px 15px;
-  color: white;
-  cursor: pointer;
-  border-radius: 6px;
-  margin: 5px 0;
+
+/* ❄️ NEVE */
+.snow{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:10;
 }
-.script-box {
-  background: #1a1a1a;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  border: 1px solid #333;
+.snowflake{
+  position:absolute;
+  top:-10px;
+  background:white;
+  border-radius:50%;
+  opacity:0.8;
+  animation:fall linear infinite;
 }
-.script-box h3 {
-  margin-top: 0;
-  color: #a566ff;
+@keyframes fall{
+  0%{transform:translateY(0) rotate(0deg);}
+  100%{transform:translateY(110vh) rotate(360deg);}
 }
+
+/* PAPAI NOEL CAINDO */
+.santa{
+  position:fixed;
+  top:-100px;
+  left:0;
+  width:80px;
+  z-index:20;
+  animation:santaFall 10s linear infinite;
+}
+@keyframes santaFall{
+  0%{top:-100px;left:10%;}
+  50%{top:40%;left:50%;}
+  100%{top:110%;left:90%;}
+}
+
+/* HEADER */
+header{text-align:center;padding:25px;border-bottom:3px solid var(--red);}
+header h1{margin:0;color:var(--red);font-size:36px;}
+header .lang-btns{margin-top:10px;}
+header .lang-btns button{
+  margin:0 5px;
+  padding:6px 12px;
+  font-size:16px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:var(--red);
+  color:white;
+  transition:.3s;
+}
+header .lang-btns button:hover{background:var(--red-light);}
+
+/* TABS */
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;padding:15px;}
+.tablinks{
+  background:transparent;
+  border:3px solid var(--red);
+  color:white;
+  padding:16px 28px;
+  border-radius:16px;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
+}
+.tablinks::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:300%;
+  height:300%;
+  background:rgba(255,255,255,0.1);
+  transform:translate(-50%,-50%) scale(0);
+  border-radius:50%;
+  transition:transform .5s;
+}
+.tablinks:hover::after{transform:translate(-50%,-50%) scale(1);}
+.tablinks:hover{transform:scale(1.08);}
+.tablinks.active{background:var(--red);}
+
+/* CONTEÚDO */
+.tabcontent{display:none;padding:30px;animation:fade .4s;}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* CENTER BOTÕES */
+.center-box{display:flex;justify-content:center;align-items:center;height:60vh;flex-direction:column;gap:25px;}
+.big-btn{
+  background:var(--red);
+  border:none;
+  padding:28px 50px;
+  color:white;
+  border-radius:22px;
+  cursor:pointer;
+  font-size:24px;
+  font-weight:bold;
+  transition:.3s;
+  box-shadow:0 0 20px rgba(255,0,0,.7);
+  position:relative;
+  overflow:hidden;
+}
+.big-btn:hover{
+  background:var(--red-light);
+  transform:scale(1.15);
+}
+.big-btn::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:300%;
+  height:300%;
+  background:rgba(255,255,255,0.15);
+  border-radius:50%;
+  transform:translate(-50%,-50%) scale(0);
+  transition:transform .5s;
+}
+.big-btn:hover::after{transform:translate(-50%,-50%) scale(1);}
+
+/* SCRIPT BOX */
+.script-box{
+  background:var(--card);
+  padding:18px;
+  margin:15px 0;
+  border-radius:14px;
+  border:1px solid var(--red);
+  position:relative;
+  transition:.3s;
+}
+.script-box[data-popular="true"]{
+  box-shadow:0 0 15px 3px gold;
+}
+.script-box:hover{transform:scale(1.03);}
+.script-box h3{margin:0 0 10px;color:var(--red-light);}
+.script-box p{word-break:break-all;color:#ccc;}
+.copy-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  padding:6px 12px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  background:var(--red);
+  color:white;
+  font-weight:bold;
+  font-size:12px;
+}
+.copy-btn:hover{background:var(--red-light);}
+
+/* PESQUISA */
+#search{width:100%;padding:12px;margin-bottom:20px;border-radius:10px;border:2px solid var(--red);background:#111;color:white;font-size:16px;}
 </style>
 </head>
 <body>
 
+<div class="lights">
+  <div></div><div></div><div></div><div></div><div></div>
+</div>
+<div class="snow"></div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Santa_Claus_Transparent.png/240px-Santa_Claus_Transparent.png" class="santa" alt="Papai Noel">
+
+<header>
+  <h1 data-lang="title">Bem-vindo ao Royal Studio Site</h1>
+  <div class="lang-btns">
+    <button onclick="setLang('pt')">🇧🇷 PT</button>
+    <button onclick="setLang('en')">🇺🇸 EN</button>
+  </div>
+</header>
+
 <div class="tabs">
-  <button class="tablinks" onclick="openTab(event, 'Home')">Home</button>
-  <button class="tablinks" onclick="openTab(event, 'Jogos')">Jogos</button>
-  <button class="tablinks" onclick="openTab(event, 'Scripts')">Scripts</button>
+  <button class="tablinks" onclick="openTab(event,'Home')" data-lang-tab="home">Home</button>
+  <button class="tablinks" onclick="openTab(event,'Jogos')" data-lang-tab="jogos">Jogos</button>
+  <button class="tablinks" onclick="openTab(event,'Youtube')" data-lang-tab="youtube">YouTube</button>
+  <button class="tablinks" onclick="openTab(event,'Tiktok')" data-lang-tab="tiktok">TikTok</button>
+  <button class="tablinks" onclick="openTab(event,'Comprar')" data-lang-tab="comprar">Comprar</button>
+  <button class="tablinks" onclick="openTab(event,'SeuArquivo')" data-lang-tab="arquivo">Seus Arquivos Aqui</button>
+  <button class="tablinks" onclick="openTab(event,'Scripts')" data-lang-tab="scripts">Scripts</button>
 </div>
 
+<!-- HOME -->
 <div id="Home" class="tabcontent">
-  <h2>Home</h2>
-  <p>Bem-vindo ao Dark Store!</p>
-  <button onclick="window.open('https://discord.gg/CAD8ZMUB4G','_blank')">Compre Aqui</button>
-  <br>
-  <button onclick="window.open('https://www.youtube.com/@Boonie0','_blank')">YouTube</button>
-  <br>
-  <button onclick="window.open('https://www.tiktok.com/@gugu648urg?lang=pt-BR','_blank')">TikTok</button>
+  <div class="center-box">
+    <button class="big-btn" data-lang-btn="suporte" onclick="window.open('https://discord.gg/DtkKAqM8y')">🤖 SUPORTE</button>
+  </div>
 </div>
 
+<!-- JOGOS -->
 <div id="Jogos" class="tabcontent">
-  <h2>Jogos</h2>
-  <button onclick="window.open('https://www.roblox.com/games/109983668079237/Steal-a-Brainrot','_blank')">Jogar o jogo</button>
+  <div class="center-box">
+    <button class="big-btn" data-lang-btn="jogos" onclick="window.open('https://www.roblox.com/games/109983668079237/Steal-a-Brainrot')">🎮 Jogar Steal a Brainrot</button>
+  </div>
 </div>
 
-<div id="Scripts" class="tabcontent">
-  <h2>Scripts</h2>
+<!-- YOUTUBE -->
+<div id="Youtube" class="tabcontent">
+  <div class="center-box">
+    <button class="big-btn" data-lang-btn="youtube" onclick="window.open('https://www.youtube.com/@Boonie0')">▶️ Ir para YouTube</button>
+  </div>
+</div>
 
-  <div class="script-box">
-    <h3>ZZZZ HUB</h3>
+<!-- TIKTOK -->
+<div id="Tiktok" class="tabcontent">
+  <div class="center-box">
+    <button class="big-btn" data-lang-btn="tiktok" onclick="window.open('https://www.tiktok.com/@gugu648urg')">🎵 Ir para TikTok</button>
+  </div>
+</div>
+
+<!-- COMPRAR -->
+<div id="Comprar" class="tabcontent">
+  <div class="center-box">
+    <button class="big-btn" data-lang-btn="comprar" onclick="window.open('https://discord.gg/CAD8ZMUB4G')">💰 Compre Aqui</button>
+  </div>
+</div>
+
+<!-- SEU ARQUIVO -->
+<div id="SeuArquivo" class="tabcontent">
+  <div class="center-box">
+    <button class="big-btn" data-lang-btn="arquivo" onclick="window.open('https://discord.gg/WpypZEuerx')">📂 Seus Arquivos Aqui</button>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<div id="Scripts" class="tabcontent">
+  <input type="text" id="search" placeholder="🔍 Pesquisar script...">
+
+  <div class="script-box" data-name="ZZZZ HUB" data-popular="true">
+    <h3>⭐ ZZZZ HUB</h3>
     <p>loadstring(game:HttpGet("https://pandadevelopment.net/virtual/file/3070ced1582894ed"))()</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copiar Script</button>
   </div>
 
-  <div class="script-box">
+  <div class="script-box" data-name="LAG SEM AURA">
     <h3>LAG SEM AURA</h3>
     <p>loadstring(game:HttpGet("https://files.zvyz.live/scripts/Cracked/TSKSkids/SVD8_Crack.luau"))()</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copiar Script</button>
   </div>
 
-  <div class="script-box">
+  <div class="script-box" data-name="ZL PvP Hub">
     <h3>ZL PvP Hub</h3>
     <p>loadstring(game:HttpGet("https://raw.githubusercontent.com/xspeedHub0/Zlhub/main/ZLPVPreview.lua"))()</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copiar Script</button>
   </div>
 
-  <div class="script-box">
+  <div class="script-box" data-name="XRapid Loader">
     <h3>XRapid Loader</h3>
     <p>loadstring(game:HttpGet("https://raw.githubusercontent.com/xrapidv2/StealaBrainrot/refs/heads/main/desyncworks"))()</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copiar Script</button>
   </div>
 
-  <div class="script-box">
-    <h3>Miranda</h3>
+  <div class="script-box" data-name="Miranda" data-popular="true">
+    <h3>⭐ Miranda</h3>
     <p>loadstring(game:HttpGet("https://pastefy.app/QBWl1BKN/raw",true))()</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copiar Script</button>
   </div>
 </div>
 
 <script>
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
+// ABAS
+function openTab(evt,name){
+  document.querySelectorAll('.tabcontent').forEach(t=>t.style.display='none');
+  document.querySelectorAll('.tablinks').forEach(b=>b.classList.remove('active'));
+  document.getElementById(name).style.display='block';
+  evt.currentTarget.classList.add('active');
+}
+document.querySelector('.tablinks').click();
+
+// COPIAR SCRIPT
+function copyScript(btn){
+  let code = btn.previousElementSibling.innerText;
+  navigator.clipboard.writeText(code);
+  btn.innerText='✅ Copiado';
+  setTimeout(()=>btn.innerText='📋 Copiar Script',1500);
 }
 
-document.getElementsByClassName("tablinks")[0].click();
-</script>
+// PESQUISA
+document.getElementById('search').addEventListener('input', function(){
+  let val=this.value.toLowerCase();
+  document.querySelectorAll('.script-box').forEach(box=>{
+    let name=box.dataset.name.toLowerCase();
+    box.style.display=name.includes(val)?'block':'none';
+  });
+});
 
+// IDIOMAS
+const langs = {
+  pt: {title:"Bem-vindo ao Royal Studio Site",suporte:"🤖 SUPORTE",jogos:"🎮 Jogar Steal a Brainrot",youtube:"▶️ Ir para YouTube",tiktok:"🎵 Ir para TikTok",comprar:"💰 Compre Aqui",arquivo:"📂 Seus Arquivos Aqui",home:"Home",scripts:"Scripts"},
+  en: {title:"Welcome to Royal Studio Site",suporte:"🤖 SUPPORT",jogos:"🎮 Play Steal a Brainrot",youtube:"▶️ Go to YouTube",tiktok:"🎵 Go to TikTok",comprar:"💰 Buy Here",arquivo:"📂 Your Files Here",home:"Home",scripts:"Scripts"}
+};
+
+function setLang(l){
+  document.querySelector('[data-lang="title"]').innerText=langs[l].title;
+  document.querySelectorAll('[data-lang-btn]').forEach(btn=>{
+    let key=btn.getAttribute('data-lang-btn');
+    btn.innerText=langs[l][key];
+  });
+  document.querySelectorAll('[data-lang-tab]').forEach(tab=>{
+    let key=tab.getAttribute('data-lang-tab');
+    tab.innerText=langs[l][key];
+  });
+}
+
+// GERAR NEVE
+for(let i=0;i<50;i++){
+  let flake=document.createElement('div');
+  flake.className='snowflake';
+  flake.style.left=Math.random()*100+'%';
+  flake.style.width=Math.random()*5+2+'px';
+  flake.style.height=flake.style.width;
+  flake.style.animationDuration=(5+Math.random()*5)+'s';
+  flake.style.opacity=Math.random();
+  document.body.appendChild(flake);
+}
+</script>
 </body>
 </html>
