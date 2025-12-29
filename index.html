@@ -1,291 +1,274 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Royal Studio Site</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALVES STORE</title>
+  <style>
+    :root {
+      --primary: #6a00ff;
+      --secondary: #00c853;
+      --bg: #0b0b14;
+      --card: #141428;
+      --text: #ffffff;
+      --muted: #b3b3ff;
+    }
+    * { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #1a0033, var(--bg));
+      color: var(--text);
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+      background: linear-gradient(90deg, #6a00ff, #9c27ff);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    header h1 { margin: 0; font-size: 2.5rem; }
+    header p { margin: 5px 0 0; color: #e0d7ff; }
 
-<style>
-* { box-sizing: border-box; }
+    .container { padding: 40px; max-width: 1300px; margin: auto; }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(#8b0000, #3b0000);
-  color: white;
-  overflow-x: hidden;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
 
-/* ================= NAV ================= */
-.tabs {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  background: #600;
-  padding: 15px;
-  flex-wrap: wrap;
-}
+    .product {
+      background: linear-gradient(180deg, var(--card), #0f0f1f);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-.tablinks {
-  background: #b30000;
-  border: none;
-  padding: 14px 22px;
-  font-size: 16px;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+    .image {
+      height: 160px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #6a00ff, #00e5ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
 
-.tablinks:hover {
-  background: gold;
-  color: black;
-  transform: scale(1.08);
-}
+    .product h3 { margin: 0 0 10px; }
+    .price { font-size: 1.2rem; color: #00ff9c; margin-bottom: 15px; }
 
-.tablinks.active {
-  background: gold;
-  color: black;
-}
+    .add {
+      background: var(--secondary);
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      color: #000;
+    }
+    .add:hover { opacity: 0.9; }
 
-/* ================= CONTENT ================= */
-.tabcontent {
-  display: none;
-  padding: 40px 15px;
-  text-align: center;
-  animation: fade 0.5s;
-}
+    .cart {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 15px;
+      width: 260px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .cart h4 { margin-top: 0; }
+    .cart ul { list-style: none; padding: 0; margin: 0 0 10px; }
+    .cart li { font-size: 0.9rem; margin-bottom: 5px; }
 
-@keyframes fade {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .support {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: #5865F2;
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
 
-/* ================= BUTTONS ================= */
-.big-btn {
-  display: block;
-  margin: 15px auto;
-  padding: 20px 40px;
-  font-size: 20px;
-  background: red;
-  border: none;
-  border-radius: 18px;
-  cursor: pointer;
-  color: white;
-  transition: 0.3s;
-  max-width: 420px;
-  width: 90%;
-}
+    .coupon {
+      margin: 30px 0;
+      padding: 20px;
+      background: linear-gradient(90deg, #00c853, #64ffda);
+      color: #000;
+      border-radius: 18px;
+      text-align: center;
+      font-weight: bold;
+    }
 
-.big-btn:hover {
-  background: gold;
-  color: black;
-  transform: scale(1.1);
-}
-
-/* ================= SCRIPT BOX ================= */
-.script-box {
-  background: #600;
-  margin: 20px auto;
-  padding: 25px;
-  border-radius: 18px;
-  max-width: 520px;
-}
-
-.script-box h3 {
-  color: gold;
-  margin-top: 0;
-}
-
-/* ================= INPUT ================= */
-input[type="text"] {
-  padding: 15px;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 12px;
-  border: none;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-/* ================= LANGUAGE ================= */
-.lang {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 999;
-}
-
-.lang select {
-  padding: 8px;
-  font-size: 16px;
-}
-
-/* ================= SNOW ================= */
-.snow {
-  position: fixed;
-  top: -10px;
-  color: white;
-  animation: fall linear infinite;
-  pointer-events: none;
-}
-
-@keyframes fall {
-  to { transform: translateY(110vh); }
-}
-
-/* ================= SANTA ================= */
-.santa {
-  position: fixed;
-  top: -150px;
-  width: 90px;
-  animation: santaFall 12s linear infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes santaFall {
-  to { transform: translateY(120vh); }
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-
-  .tabs {
-    flex-direction: column;
-  }
-
-  .tablinks {
-    width: 90%;
-    font-size: 18px;
-  }
-
-  .big-btn {
-    font-size: 22px;
-    padding: 22px;
-  }
-
-  .script-box {
-    width: 95%;
-  }
-
-  .lang {
-    position: static;
-    text-align: center;
-    margin: 10px 0;
-  }
-
-  .santa {
-    width: 65px;
-    opacity: 0.8;
-  }
-}
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: var(--muted);
+    }
+  .badge{background:#ffd700;color:#000;padding:4px 8px;border-radius:8px;font-size:0.7rem;font-weight:bold;display:inline-block;margin-bottom:6px;}
 </style>
 </head>
-
 <body>
 
-<!-- LANGUAGE -->
-<div class="lang">
-  <select onchange="changeLang(this.value)">
-    <option value="pt">PT</option>
-    <option value="en">EN</option>
-    <option value="es">ES</option>
-  </select>
-</div>
+  <a class="support" href="https://discord.gg/DtkKAqM8yG" target="_blank">SUPPORT</a>
 
-<!-- NAV -->
-<div class="tabs">
-  <button class="tablinks" onclick="openTab(event,'Home')" data-pt="Home" data-en="Home" data-es="Inicio">Home</button>
-  <button class="tablinks" onclick="openTab(event,'Scripts')" data-pt="Scripts" data-en="Scripts" data-es="Scripts">Scripts</button>
-  <button class="tablinks" onclick="openTab(event,'Links')" data-pt="Links" data-en="Links" data-es="Enlaces">Links</button>
-  <button class="tablinks" onclick="openTab(event,'Arquivos')" data-pt="Seus Arquivos Aqui" data-en="Your Files Here" data-es="Tus Archivos">Seus Arquivos Aqui</button>
-</div>
+  <div class="cart">
+    <h4>🛒 Carrinho</h4>
+    <ul id="cartItems"></ul>
+    <strong id="total">Total: $0.00</strong>
 
-<!-- HOME -->
-<div id="Home" class="tabcontent">
-  <h1 data-pt="Bem-vindo ao Royal Studio Site"
-      data-en="Welcome to Royal Studio Site"
-      data-es="Bienvenido a Royal Studio Site">
-      Bem-vindo ao Royal Studio Site
-  </h1>
+    <div style="margin-top:10px;">
+      <input id="couponInput" placeholder="Cupom" style="width:100%;padding:6px;border-radius:6px;border:none;" />
+      <button onclick="applyCoupon()" style="width:100%;margin-top:6px;padding:8px;border:none;border-radius:8px;background:#00c853;font-weight:bold;">Aplicar Cupom</button>
+    </div>
 
-  <button class="big-btn" onclick="window.open('https://www.roblox.com/games/109983668079237/Steal-a-Brainrot')">🎮 Jogar Steal a Brainrot</button>
-  <button class="big-btn" onclick="window.open('https://www.youtube.com')">▶ YouTube</button>
-  <button class="big-btn" onclick="window.open('https://www.tiktok.com')">🎵 TikTok</button>
-  <button class="big-btn" onclick="window.open('https://discord.gg/j7Su2whafZ')">🛒 Compre Aqui</button>
-  <button class="big-btn" onclick="window.open('https://discord.gg/DtkKAqM8yG')">🤖 Suporte</button>
-</div>
-
-<!-- SCRIPTS -->
-<div id="Scripts" class="tabcontent">
-  <input type="text" placeholder="🔍 Pesquisar script..." onkeyup="searchScript(this.value)">
-
-  <div class="script-box">
-    <h3>⭐ ZZZZ HUB</h3>
-    <button class="big-btn" onclick="window.open('https://discord.gg/j7Su2whafZ')">📂 Acessar no Discord</button>
+    <button onclick="pay()" style="width:100%;margin-top:10px;padding:10px;border:none;border-radius:10px;background:#ffd54f;font-weight:bold;">FINALIZAR COMPRA</button>
   </div>
 
-  <div class="script-box">
-    <h3>LAG SEM AURA</h3>
-    <button class="big-btn" onclick="window.open('https://discord.gg/j7Su2whafZ')">📂 Acessar no Discord</button>
+  <header>
+    <h1>🎆 ALVES STORE 🎆</h1>
+    <p id="subtitle">Loja online profissional • Tema Ano Novo 2025</p>
+    <div style="margin-top:10px;">
+      <select id="lang" onchange="setLang(this.value)" style="padding:6px;border-radius:8px;border:none;font-weight:bold;">
+        <option value="pt">🇧🇷 Português</option>
+        <option value="en">🇺🇸 English</option>
+        <option value="es">🇪🇸 Español</option>
+      </select>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="coupon">
+      CUPOM DE ANO NOVO: <span>FINAL2025</span> • Válido até 01/01/2026
+    </div>
+
+    <div class="grid">
+
+      <!-- ALVES LOGS VIP -->
+      <div class="product">
+        <div class="image">💎</div>
+        <h3>ALVES LOGS VIP</h3>
+        <div class="price">$14.99</div>
+        <button class="add" onclick="addToCart('ALVES LOGS VIP', 14.99)">ADICIONAR AO CARRINHO</button>
+      </div>
+
+      <!-- ROBLOX SCRIPTS -->
+      <div class="product">
+        <div class="image">👾</div>
+        <h3>ROBLOX SCRIPTS</h3>
+        <div class="price">$5.50</div>
+        <button class="add" onclick="addToCart('ROBLOX SCRIPTS', 5.50)">ADICIONAR AO CARRINHO</button>
+      </div>
+
+      <!-- FIVEM 1 DIA -->
+      <div class="product">
+        <div class="image">🔥</div>
+        <h3>Comprar Cheat FIVEM Por 1 Dia</h3>
+        <div class="price">$9.99</div>
+        <button class="add" onclick="addToCart('Cheat FIVEM - 1 Dia', 9.99)">ADICIONAR AO CARRINHO</button>
+      </div>
+
+      <!-- FIVEM 1 SEMANA -->
+      <div class="product">
+        <div class="image">🔥</div>
+        <h3><span class="badge">MAIS VENDIDO</span><br>Comprar Cheat FIVEM Por Uma Semana</h3>
+        <div class="price">$25.00</div>
+        <button class="add" onclick="addToCart('Cheat FIVEM - 1 Semana', 25.00)">ADICIONAR AO CARRINHO</button>
+      </div>
+
+      <!-- FIVEM 1 MES -->
+      <div class="product">
+        <div class="image">🔥</div>
+        <h3>Comprar Cheat FIVEM Por 1 Mês</h3>
+        <div class="price">$55.00</div>
+        <button class="add" onclick="addToCart('Cheat FIVEM - 1 Mês', 55.00)">ADICIONAR AO CARRINHO</button>
+      </div>
+
+      <!-- COMPRE SUA LOJA -->
+      <div class="product">
+        <div class="image">💵</div>
+        <h3>COMPRE SUA LOJA</h3>
+        <div class="price">Em breve</div>
+        <button class="add" disabled>EM BREVE</button>
+      </div>
+
+    </div>
+  </div>
   </div>
 
-  <div class="script-box">
-    <h3>ZL PvP Hub</h3>
-    <button class="big-btn" onclick="window.open('https://discord.gg/j7Su2whafZ')">📂 Acessar no Discord</button>
-  </div>
-</div>
+  <footer>
+    © 2025 ALVES STORE • Todos os direitos reservados
+  </footer>
 
-<!-- LINKS -->
-<div id="Links" class="tabcontent">
-  <h2>Links Oficiais</h2>
-  <button class="big-btn" onclick="window.open('https://discord.gg/DtkKAqM8yG')">🤖 Suporte</button>
-</div>
+  <script>
+    let total = 0;
+    let couponApplied = false;
+    const COUPON_CODE = 'FINAL2025';
+    const COUPON_DISCOUNT = 0.30;
+    const COUPON_EXPIRATION = new Date('2026-01-01T00:00:00');
 
-<!-- FILES -->
-<div id="Arquivos" class="tabcontent">
-  <h2>📂 Seus Arquivos Aqui</h2>
-  <button class="big-btn" onclick="window.open('https://discord.gg/WpypZEuerx')">Entrar no Discord</button>
-</div>
+    const translations = {
+      pt: {
+        subtitle: 'Loja online profissional • Tema Ano Novo 2025',
+        add: 'ADICIONAR AO CARRINHO',
+        finish: 'FINALIZAR COMPRA'
+      },
+      en: {
+        subtitle: 'Professional online store • New Year 2025 Theme',
+        add: 'ADD TO CART',
+        finish: 'CHECKOUT'
+      },
+      es: {
+        subtitle: 'Tienda online profesional • Tema Año Nuevo 2025',
+        add: 'AÑADIR AL CARRITO',
+        finish: 'FINALIZAR COMPRA'
+      }
+    };
 
-<!-- SANTA -->
-<img src="https://i.imgur.com/4M34hi2.png" class="santa" style="left:10%;">
-<img src="https://i.imgur.com/4M34hi2.png" class="santa" style="left:70%; animation-delay:5s;">
+    function setLang(lang){
+      document.getElementById('subtitle').innerText = translations[lang].subtitle;
+      document.querySelectorAll('.add').forEach(b=>b.innerText=translations[lang].add);
+      document.querySelector('.cart button').innerText = translations[lang].finish;
+    }
 
-<script>
-function openTab(evt, tab) {
-  document.querySelectorAll('.tabcontent').forEach(t=>t.style.display='none');
-  document.querySelectorAll('.tablinks').forEach(b=>b.classList.remove('active'));
-  document.getElementById(tab).style.display='block';
-  evt.currentTarget.classList.add('active');
-}
-document.querySelector('.tablinks').click();
+    function addToCart(name, price) {
+      const li = document.createElement('li');
+      li.textContent = name + ' - $' + price.toFixed(2);
+      document.getElementById('cartItems').appendChild(li);
+      total += price;
+      recalc();
+    }
 
-function changeLang(lang) {
-  document.querySelectorAll('[data-'+lang+']').forEach(el=>{
-    el.innerText = el.getAttribute('data-'+lang);
-  });
-}
+    function applyCoupon() {
+      const input = document.getElementById('couponInput').value.trim();
+      if (input === COUPON_CODE && new Date() < COUPON_EXPIRATION) {
+        couponApplied = true;
+        alert('Cupom aplicado!');
+      } else {
+        couponApplied = false;
+        alert('Cupom inválido');
+      }
+      recalc();
+    }
 
-function searchScript(val) {
-  document.querySelectorAll('.script-box').forEach(box=>{
-    box.style.display = box.innerText.toLowerCase().includes(val.toLowerCase()) ? 'block' : 'none';
-  });
-}
+    function recalc() {
+      let finalTotal = couponApplied ? total * (1 - COUPON_DISCOUNT) : total;
+      document.getElementById('total').textContent = 'Total: $' + finalTotal.toFixed(2);
+    }
 
-/* Snow */
-let flakes = window.innerWidth < 768 ? 20 : 40;
-for(let i=0;i<flakes;i++){
-  let s=document.createElement('div');
-  s.className='snow';
-  s.innerHTML='❄';
-  s.style.left=Math.random()*100+'vw';
-  s.style.animationDuration=5+Math.random()*5+'s';
-  s.style.fontSize=10+Math.random()*20+'px';
-  document.body.appendChild(s);
-}
-</script>
+    function pay(){window.location.href='https://discord.gg/HWba4TEea3';}
+  </script>
 
 </body>
 </html>
