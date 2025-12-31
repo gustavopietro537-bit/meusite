@@ -1,274 +1,225 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALVES STORE</title>
-  <style>
-    :root {
-      --primary: #6a00ff;
-      --secondary: #00c853;
-      --bg: #0b0b14;
-      --card: #141428;
-      --text: #ffffff;
-      --muted: #b3b3ff;
-    }
-    * { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
-    body {
-      margin: 0;
-      background: radial-gradient(circle at top, #1a0033, var(--bg));
-      color: var(--text);
-    }
-    header {
-      padding: 20px;
-      text-align: center;
-      background: linear-gradient(90deg, #6a00ff, #9c27ff);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-    }
-    header h1 { margin: 0; font-size: 2.5rem; }
-    header p { margin: 5px 0 0; color: #e0d7ff; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ALVES STORE - VIP DARK LUXO</title>
 
-    .container { padding: 40px; max-width: 1300px; margin: auto; }
+<style>
+:root {
+  --luxo: #d4af37;
+  --bg: #000000;
+  --card: #0c0c0c;
+  --text: #ffffff;
+  --ok: #00c853;
+  --sold: #ff1744;
+}
+*{box-sizing:border-box;font-family:Arial, sans-serif;}
+body{margin:0;background:#000;color:var(--text);}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
+/* HEADER */
+header{
+  text-align:center;
+  padding:25px;
+  background:linear-gradient(90deg,#000,#111);
+  border-bottom:2px solid var(--luxo);
+}
+header h1{font-size:3rem;color:var(--luxo);margin:0;text-shadow:0 0 10px var(--luxo);}
+header p{color:#c5c5c5;margin-top:5px;}
 
-    .product {
-      background: linear-gradient(180deg, var(--card), #0f0f1f);
-      border-radius: 18px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+/* CUPOM */
+.coupon{
+  background:var(--luxo);
+  color:#000;
+  padding:18px;
+  margin:30px auto;
+  text-align:center;
+  font-weight:bold;
+  max-width:600px;
+  border-radius:12px;
+  font-size:1.2rem;
+  box-shadow:0 0 20px var(--luxo);
+}
 
-    .image {
-      height: 160px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, #6a00ff, #00e5ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+/* GRID DE PRODUTOS */
+.container{max-width:1200px;margin:auto;padding:40px 20px;}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+.product{
+  background:#0c0c0c;
+  border:2px solid #222;
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 0 15px rgba(212,175,55,0.2);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  transition:0.2s;
+}
+.product:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 22px rgba(212,175,55,0.4);
+}
+.image{
+  height:140px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#111,#333);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2.5rem;
+}
+.product h3{color:var(--luxo);margin:0;}
+.price{font-size:1.3rem;color:#00e676;}
 
-    .product h3 { margin: 0 0 10px; }
-    .price { font-size: 1.2rem; color: #00ff9c; margin-bottom: 15px; }
+/* BOTÕES */
+.btn{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:1rem;
+  font-weight:bold;
+  cursor:pointer;
+}
+.green{background:var(--ok);color:#000;}
+.red{background:var(--sold);color:#fff;cursor:not-allowed;}
 
-    .add {
-      background: var(--secondary);
-      border: none;
-      padding: 12px;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      color: #000;
-    }
-    .add:hover { opacity: 0.9; }
+/* CARRINHO */
+.cart{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#111;
+  border:2px solid var(--luxo);
+  padding:18px;
+  width:260px;
+  border-radius:18px;
+}
+.cart h4{margin:0 0 10px;color:var(--luxo);}
+.cart ul{padding:0;list-style:none;max-height:200px;overflow-y:auto;}
 
-    .cart {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--card);
-      border-radius: 16px;
-      padding: 15px;
-      width: 260px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    }
-    .cart h4 { margin-top: 0; }
-    .cart ul { list-style: none; padding: 0; margin: 0 0 10px; }
-    .cart li { font-size: 0.9rem; margin-bottom: 5px; }
+/* SUPORTE */
+.support{
+  position:fixed;top:20px;left:20px;
+  background:var(--luxo);color:#000;
+  padding:10px 18px;border-radius:10px;
+  text-decoration:none;font-weight:bold;
+}
 
-    .support {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: #5865F2;
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 14px;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    }
-
-    .coupon {
-      margin: 30px 0;
-      padding: 20px;
-      background: linear-gradient(90deg, #00c853, #64ffda);
-      color: #000;
-      border-radius: 18px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: var(--muted);
-    }
-  .badge{background:#ffd700;color:#000;padding:4px 8px;border-radius:8px;font-size:0.7rem;font-weight:bold;display:inline-block;margin-bottom:6px;}
+/* TAG MAIS VENDIDO */
+.badge{
+  background:var(--luxo);
+  color:#000;
+  padding:4px 8px;
+  border-radius:8px;
+  font-size:0.7rem;
+  font-weight:bold;
+}
 </style>
 </head>
 <body>
 
-  <a class="support" href="https://discord.gg/DtkKAqM8yG" target="_blank">SUPPORT</a>
+<a class="support" href="https://discord.gg/DtkKAqM8yG" target="_blank">SUPORTE</a>
 
-  <div class="cart">
-    <h4>🛒 Carrinho</h4>
-    <ul id="cartItems"></ul>
-    <strong id="total">Total: $0.00</strong>
+<header>
+<h1>ALVES STORE VIP</h1>
+<p>Premium • Dark Luxo • Sistema Profissional</p>
+</header>
 
-    <div style="margin-top:10px;">
-      <input id="couponInput" placeholder="Cupom" style="width:100%;padding:6px;border-radius:6px;border:none;" />
-      <button onclick="applyCoupon()" style="width:100%;margin-top:6px;padding:8px;border:none;border-radius:8px;background:#00c853;font-weight:bold;">Aplicar Cupom</button>
-    </div>
+<div class="coupon">
+🎁 CUPOM DE 30%: <b>FINAL2025</b> (válido)
+</div>
 
-    <button onclick="pay()" style="width:100%;margin-top:10px;padding:10px;border:none;border-radius:10px;background:#ffd54f;font-weight:bold;">FINALIZAR COMPRA</button>
-  </div>
+<div class="cart">
+<h4>🛒 Carrinho</h4>
+<ul id="cartItems"></ul>
+<b id="total">Total: R$0,00</b>
+<br><br>
+<input id="couponInput" placeholder="Cupom" style="width:100%;padding:6px;border-radius:6px;border:none;">
+<button onclick="applyCoupon()" class="btn" style="margin-top:6px;background:var(--luxo);">Aplicar Cupom</button>
+<button onclick="pay()" class="btn" style="margin-top:10px;background:#fff;color:#000;">FINALIZAR</button>
+</div>
 
-  <header>
-    <h1>🎆 ALVES STORE 🎆</h1>
-    <p id="subtitle">Loja online profissional • Tema Ano Novo 2025</p>
-    <div style="margin-top:10px;">
-      <select id="lang" onchange="setLang(this.value)" style="padding:6px;border-radius:8px;border:none;font-weight:bold;">
-        <option value="pt">🇧🇷 Português</option>
-        <option value="en">🇺🇸 English</option>
-        <option value="es">🇪🇸 Español</option>
-      </select>
-    </div>
-  </header>
+<div class="container">
+<div class="grid">
 
-  <div class="container">
+<!-- MAIS VENDIDO -->
+<div class="product">
+<span class="badge">MAIS VENDIDO 🔥</span>
+<div class="image">🔥</div>
+<h3>Cheat FiveM - 1 Dia</h3>
+<div class="price">R$11,00</div>
+<button class="btn green" onclick="addToCart('Cheat FIVEM - 1 Dia', 11)">ADICIONAR</button>
+</div>
 
-    <div class="coupon">
-      CUPOM DE ANO NOVO: <span>FINAL2025</span> • Válido até 01/01/2026
-    </div>
+<!-- OUTROS PRODUTOS -->
+<div class="product">
+<div class="image">🧠</div>
+<h3>La Taco 460M</h3>
+<div class="price">R$100,00</div>
+<button class="btn green" onclick="addToCart('La Taco 460M', 100)">ADICIONAR</button>
+</div>
 
-    <div class="grid">
+<div class="product">
+<div class="image">🧠</div>
+<h3>La Jolly 217M</h3>
+<div class="price">R$60,00</div>
+<button class="btn green" onclick="addToCart('La Jolly 217M', 60)">ADICIONAR</button>
+</div>
 
-      <!-- ALVES LOGS VIP -->
-      <div class="product">
-        <div class="image">💎</div>
-        <h3>ALVES LOGS VIP</h3>
-        <div class="price">$14.99</div>
-        <button class="add" onclick="addToCart('ALVES LOGS VIP', 14.99)">ADICIONAR AO CARRINHO</button>
-      </div>
+<div class="product">
+<div class="image">🍝</div>
+<h3>Spaghetti Toilet</h3>
+<div class="price">R$30,00</div>
+<button class="btn green" onclick="addToCart('Spaghetti Toilet', 30)">ADICIONAR</button>
+</div>
 
-      <!-- ROBLOX SCRIPTS -->
-      <div class="product">
-        <div class="image">👾</div>
-        <h3>ROBLOX SCRIPTS</h3>
-        <div class="price">$5.50</div>
-        <button class="add" onclick="addToCart('ROBLOX SCRIPTS', 5.50)">ADICIONAR AO CARRINHO</button>
-      </div>
+<!-- VENDIDO -->
+<div class="product">
+<div class="image">💀</div>
+<h3>Garama 50M</h3>
+<div class="price">VENDIDO</div>
+<button class="btn red" disabled>VENDIDO</button>
+</div>
 
-      <!-- FIVEM 1 DIA -->
-      <div class="product">
-        <div class="image">🔥</div>
-        <h3>Comprar Cheat FIVEM Por 1 Dia</h3>
-        <div class="price">$9.99</div>
-        <button class="add" onclick="addToCart('Cheat FIVEM - 1 Dia', 9.99)">ADICIONAR AO CARRINHO</button>
-      </div>
+</div>
+</div>
 
-      <!-- FIVEM 1 SEMANA -->
-      <div class="product">
-        <div class="image">🔥</div>
-        <h3><span class="badge">MAIS VENDIDO</span><br>Comprar Cheat FIVEM Por Uma Semana</h3>
-        <div class="price">$25.00</div>
-        <button class="add" onclick="addToCart('Cheat FIVEM - 1 Semana', 25.00)">ADICIONAR AO CARRINHO</button>
-      </div>
+<footer style="text-align:center;padding:20px;color:#777;">
+© 2025 ALVES STORE VIP • Todos os direitos reservados
+</footer>
 
-      <!-- FIVEM 1 MES -->
-      <div class="product">
-        <div class="image">🔥</div>
-        <h3>Comprar Cheat FIVEM Por 1 Mês</h3>
-        <div class="price">$55.00</div>
-        <button class="add" onclick="addToCart('Cheat FIVEM - 1 Mês', 55.00)">ADICIONAR AO CARRINHO</button>
-      </div>
+<script>
+let total = 0;
+const COUPON = "FINAL2025";
 
-      <!-- COMPRE SUA LOJA -->
-      <div class="product">
-        <div class="image">💵</div>
-        <h3>COMPRE SUA LOJA</h3>
-        <div class="price">Em breve</div>
-        <button class="add" disabled>EM BREVE</button>
-      </div>
-
-    </div>
-  </div>
-  </div>
-
-  <footer>
-    © 2025 ALVES STORE • Todos os direitos reservados
-  </footer>
-
-  <script>
-    let total = 0;
-    let couponApplied = false;
-    const COUPON_CODE = 'FINAL2025';
-    const COUPON_DISCOUNT = 0.30;
-    const COUPON_EXPIRATION = new Date('2026-01-01T00:00:00');
-
-    const translations = {
-      pt: {
-        subtitle: 'Loja online profissional • Tema Ano Novo 2025',
-        add: 'ADICIONAR AO CARRINHO',
-        finish: 'FINALIZAR COMPRA'
-      },
-      en: {
-        subtitle: 'Professional online store • New Year 2025 Theme',
-        add: 'ADD TO CART',
-        finish: 'CHECKOUT'
-      },
-      es: {
-        subtitle: 'Tienda online profesional • Tema Año Nuevo 2025',
-        add: 'AÑADIR AL CARRITO',
-        finish: 'FINALIZAR COMPRA'
-      }
-    };
-
-    function setLang(lang){
-      document.getElementById('subtitle').innerText = translations[lang].subtitle;
-      document.querySelectorAll('.add').forEach(b=>b.innerText=translations[lang].add);
-      document.querySelector('.cart button').innerText = translations[lang].finish;
-    }
-
-    function addToCart(name, price) {
-      const li = document.createElement('li');
-      li.textContent = name + ' - $' + price.toFixed(2);
-      document.getElementById('cartItems').appendChild(li);
-      total += price;
-      recalc();
-    }
-
-    function applyCoupon() {
-      const input = document.getElementById('couponInput').value.trim();
-      if (input === COUPON_CODE && new Date() < COUPON_EXPIRATION) {
-        couponApplied = true;
-        alert('Cupom aplicado!');
-      } else {
-        couponApplied = false;
-        alert('Cupom inválido');
-      }
-      recalc();
-    }
-
-    function recalc() {
-      let finalTotal = couponApplied ? total * (1 - COUPON_DISCOUNT) : total;
-      document.getElementById('total').textContent = 'Total: $' + finalTotal.toFixed(2);
-    }
-
-    function pay(){window.location.href='https://discord.gg/HWba4TEea3';}
-  </script>
+function addToCart(name, price){
+  const li = document.createElement("li");
+  li.textContent = `${name} - R$${price.toFixed(2)}`;
+  document.getElementById("cartItems").appendChild(li);
+  total += price;
+  recalc();
+}
+function applyCoupon(){
+  let c = document.getElementById("couponInput").value;
+  if(c === COUPON){
+    total *= 0.7;
+    alert("Cupom aplicado! -30%");
+    recalc();
+  } else {
+    alert("Cupom inválido");
+  }
+}
+function recalc(){
+  document.getElementById("total").textContent = "Total: R$" + total.toFixed(2);
+}
+function pay(){
+  window.location.href = "https://discord.gg/HWba4TEea3";
+}
+</script>
 
 </body>
 </html>
